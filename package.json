@@ -34,12 +34,6 @@
     "format": "prettier --write --list-different \"{,!(dist)/**/}*.{js,md,ts,css,scss}\"",
     "remark": "remark -fqu 'remark-lint-no-dead-urls=\"skipLocalhost\": true, \"skipOffline\": true' -u remark-validate-links -i .remark-ignore ."
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm test && npm audit && npm run remark"
-    }
-  },
   "lint-staged": {
     "!(docker|test)/*": "eslint"
   },
