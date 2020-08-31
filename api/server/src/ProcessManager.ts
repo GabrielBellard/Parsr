@@ -19,6 +19,9 @@ import * as path from 'path';
 import logger from './Logger';
 import { PipelineProcess, ProcessMapper } from './types';
 
+const fetch = require('node-fetch');
+
+
 export class ProcessManager {
   private processes: ProcessMapper = {};
 
@@ -83,6 +86,19 @@ export class ProcessManager {
       pipelineProcess.isDone = true;
       pipelineProcess.exitCode = code;
       logger.info('Process exited');
+
+      const param = {
+        headers: { 'content-type': 'application/json; charset=UTF-8' },
+        method: 'PATCH',
+      };
+
+      logger.info(`http://127.0.0.1:5000/universes/da28aaf2-1481-4554-a534-624e353e60d4/documents/${docId}`);
+
+      fetch(`http://127.0.0.1:5000/universes/da28aaf2-1481-4554-a534-624e353e60d4/documents/${docId}`,
+        param).then((data: any) => {
+        logger.info(data);
+        return data.json();
+      });
     });
 
     this.processes[docId] = pipelineProcess;
