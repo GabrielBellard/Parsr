@@ -18,7 +18,6 @@
   },
   "scripts": {
     "install:pre": "node ./scripts/preinstall",
-    "test": "mocha -t 15000 -r ts-node/register test/**/**/*.spec.ts",
     "copyAssets": "node ./scripts/copyFiles",
     "postinstall": "npm run copyAssets",
     "build:ts": "npm run copyAssets && tsc --outDir ./dist",
