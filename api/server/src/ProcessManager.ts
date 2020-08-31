@@ -26,6 +26,7 @@ export class ProcessManager {
   private processes: ProcessMapper = {};
 
   public start(
+    universe_id: string,
     doc: string,
     docId: string,
     config: string,
@@ -92,9 +93,8 @@ export class ProcessManager {
         method: 'PATCH',
       };
 
-      logger.info(`http://127.0.0.1:5000/universes/da28aaf2-1481-4554-a534-624e353e60d4/documents/${docId}`);
 
-      fetch(`http://127.0.0.1:5000/universes/da28aaf2-1481-4554-a534-624e353e60d4/documents/${docId}`,
+      fetch(`http://127.0.0.1:5000/universes/${universe_id}/documents/${docId}`,
         param).then((data: any) => {
         logger.info(data);
         return data.json();

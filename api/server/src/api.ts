@@ -324,6 +324,8 @@ export class ApiServer {
 
     const docName: string = doc.originalname.split('.')[0];
     const docId: string = this.getUUID();
+    const universe_id = req.query.universe_id;
+
     const outputPath = path.resolve(`${this.outputDir}/${docName}-${docId}`);
 
     if (!this.isValidDocument(doc)) {
@@ -339,7 +341,7 @@ export class ApiServer {
     }
 
     this.fileManager.newBinder(docId, doc.path, configPath, outputPath, docName);
-    this.processManager.start(doc.path, docId, configPath, docName, outputPath);
+    this.processManager.start(universe_id, doc.path, docId, configPath, docName, outputPath);
 
     res
       .status(202)
