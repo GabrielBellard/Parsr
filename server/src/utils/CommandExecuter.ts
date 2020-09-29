@@ -335,7 +335,7 @@ function magickRetroCompatibility(command: string[], args: string[]): string[] {
 
 function qpdfDecrypt(filePath: string): Promise<string> {
   const outputFilePath = getTemporaryFile('.pdf');
-  return run(COMMANDS.QPDF, ['--decrypt', '--no-warn', filePath, outputFilePath]).then(() => {
+  return run(COMMANDS.QPDF, ['--decrypt', filePath, outputFilePath]).then(() => {
     logger.info(`Qpdf repair succeed --> ${outputFilePath}`);
     return outputFilePath;
   });
