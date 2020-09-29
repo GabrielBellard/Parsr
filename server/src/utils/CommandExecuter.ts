@@ -50,7 +50,7 @@ export function run(cmd: string | string[], args: string[], options?: any): Prom
     });
   }
 
-  if (COMMANDS.PDF2TXT === cmd || COMMANDS.DUMPPDF === cmd) {
+  if (COMMANDS.DUMPPDF === cmd) {
     // Last PdfMiner version requires to be ran --> python /path_to_pdf2txt/pdf2txt.py args
     return runPythonCommand(cmd, args, options);
   } else {
