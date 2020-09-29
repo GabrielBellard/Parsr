@@ -349,10 +349,10 @@ function mutoolClean(filePath: string): Promise<string> {
   });
 }
 
-function runPythonCommand(cmd: string | string[], args: string[], options?: any): Promise<string> {
-  const newArgs = [systemCommandPath(cmd)].concat(args);
-  return runCommand(COMMANDS.PYTHON, newArgs, options);
-}
+//function runPythonCommand(cmd: string | string[], args: string[], options?: any): Promise<string> {
+  //const newArgs = [systemCommandPath(cmd)].concat(args);
+  //return runCommand(COMMANDS.PYTHON, newArgs, options);
+//}
 
 function runCommand(cmd: string | string[], args: string[], options?: any): Promise<string> {
   return new Promise((resolve, reject) => {
