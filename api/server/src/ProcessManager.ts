@@ -94,7 +94,7 @@ export class ProcessManager {
       };
 
 
-      fetch(`http://127.0.0.1:5000/universes/${universe_id}/documents/${docId}`,
+      fetch(`http://127.0.0.1:5000/api/universes/${universe_id}/documents/${docId}`,
         param).then((data: any) => {
         logger.info(data);
         return data.json();

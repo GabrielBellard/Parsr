@@ -50,12 +50,12 @@ export function run(cmd: string | string[], args: string[], options?: any): Prom
     });
   }
 
-  if (COMMANDS.PDF2TXT === cmd || COMMANDS.DUMPPDF === cmd) {
+  //if (COMMANDS.DUMPPDF === cmd) {
     // Last PdfMiner version requires to be ran --> python /path_to_pdf2txt/pdf2txt.py args
-    return runPythonCommand(cmd, args, options);
-  } else {
+ //   return runPythonCommand(cmd, args, options);
+ // } else {
     return runCommand(cmd, args, options);
-  }
+  //}
 }
 
 export function isCommandAvailable(cmd: string | string[]) {
@@ -335,7 +335,7 @@ function magickRetroCompatibility(command: string[], args: string[]): string[] {
 
 function qpdfDecrypt(filePath: string): Promise<string> {
   const outputFilePath = getTemporaryFile('.pdf');
-  return run(COMMANDS.QPDF, ['--decrypt', '--no-warn', filePath, outputFilePath]).then(() => {
+  return run(COMMANDS.QPDF, ['--decrypt', filePath, outputFilePath]).then(() => {
     logger.info(`Qpdf repair succeed --> ${outputFilePath}`);
     return outputFilePath;
   });
@@ -349,10 +349,10 @@ function mutoolClean(filePath: string): Promise<string> {
   });
 }
 
-function runPythonCommand(cmd: string | string[], args: string[], options?: any): Promise<string> {
-  const newArgs = [systemCommandPath(cmd)].concat(args);
-  return runCommand(COMMANDS.PYTHON, newArgs, options);
-}
+//function runPythonCommand(cmd: string | string[], args: string[], options?: any): Promise<string> {
+  //const newArgs = [systemCommandPath(cmd)].concat(args);
+  //return runCommand(COMMANDS.PYTHON, newArgs, options);
+//}
 
 function runCommand(cmd: string | string[], args: string[], options?: any): Promise<string> {
   return new Promise((resolve, reject) => {
