@@ -50,6 +50,7 @@ export class ApiServer {
 
   private allowedMimetypes: string[] = [
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation', // pptx
     'message/rfc822', // .eml
     'application/pdf',
     'application/xml',

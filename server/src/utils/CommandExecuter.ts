@@ -33,6 +33,7 @@ const COMMANDS = {
   IDENTIFY: ['magick', 'identify'],
   CONVERT: ['magick', 'convert'],
   PANDOC: 'pandoc',
+  LIBREOFFICE: 'soffice',
   DUMPPDF: ['dumppdf.py', 'dumppdf'],
   PYTHON: ['python3', 'python'],
   QPDF: 'qpdf',
@@ -119,6 +120,22 @@ export function pandocDocxToHtml(filePath: string): Promise<string> {
     html => {
       logger.info(`Pandoc docx to html succeed`);
       return html;
+    },
+  );
+}
+
+export function libreofficePptxToPdf(filePath: string): Promise<string> {
+  const assetsFolder = path.dirname(filePath);
+  const pdfFile = filePath.replace('.pptx', '.pdf');
+
+  return run(COMMANDS.LIBREOFFICE, [
+    '--headless',
+    '--convert-to', 'pdf',
+    '--outdir', assetsFolder,
+    filePath]).then(
+    _ => {
+      logger.info(`Libreoffice pptx to pdf succeed`);
+      return pdfFile;
     },
   );
 }

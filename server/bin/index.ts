@@ -23,6 +23,7 @@ import { AbbyyToolsLocalXml } from '../src/input/abbyy/AbbyyToolsXml';
 import { DocxExtractor } from '../src/input/doc/DocxExtractor';
 import { EmailExtractor } from '../src/input/email/EmailExtractor';
 import { JsonExtractor } from '../src/input/json/JsonExtractor';
+import { PptxExtractor } from '../src/input/ppt/PptxExtractor';
 import { Orchestrator } from '../src/Orchestrator';
 import { CsvExporter } from '../src/output/csv/CsvExporter';
 import { JsonExporter } from '../src/output/json/JsonExporter';
@@ -109,8 +110,10 @@ function main(): void {
     orchestrator = new Orchestrator(new EmailExtractor(config), cleaner);
   } else if (fileType.ext === 'docx') {
     orchestrator = new Orchestrator(new DocxExtractor(config), cleaner);
+  } else if (fileType.ext === 'pptx') {
+    orchestrator = new Orchestrator(new PptxExtractor(config), cleaner);
   } else {
-    throw new Error('Input file format is unsupported');
+    throw new Error('Input file format is unsupported ' + fileType.ext);
   }
 
   /**
